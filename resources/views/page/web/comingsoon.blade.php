@@ -9,8 +9,8 @@
 
 <!-- Inner Content Start -->
 <div class="innerContent-wrap"  style="margin-top: 180px;">
-  <div class="container"> 
-    
+  <div class="container">
+
     <!-- 404 Start -->
     <div class="404-wrap">
       <div class="row">
@@ -23,10 +23,10 @@
         </div>
       </div>
     </div>
-    <!-- 404 End --> 
-    
+    <!-- 404 End -->
+
   </div>
 </div>
-<!-- Inner Content Start --> 
+<!-- Inner Content Start -->
 
 @endsection

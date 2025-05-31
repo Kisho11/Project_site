@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AdministrationController extends Controller
+class AdminController extends Controller
 {
-
-    public function index(Request $request)
+    public function __construct()
     {
-        return view('page.web.administration');
+        $this->middleware('auth');
+        $this->middleware('admin');
     }
 
+    public function dashboard()
+    {
+        return view('admin.dashboard');
+    }
 }

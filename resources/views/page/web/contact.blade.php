@@ -6,12 +6,12 @@
 @section('content')
 
 <style>
-.address-item .address-icon 
+.address-item .address-icon
 {
   background: #500d0a !important;
 }
 
-.newsletter-wrap 
+.newsletter-wrap
 {
   background: #c5b0ae !important;
 }
@@ -22,13 +22,13 @@
 }
 </style>
 
-<!-- Inner Heading Start 
+<!-- Inner Heading Start
 <div class="innerHeading-wrap">
   <div class="container">
     <h1>Contact Us</h1>
   </div>
 </div>
- Inner Heading End --> 
+ Inner Heading End -->
 
 <!-- Inner Content Start -->
 <div class="innerContent-wrap" style="margin-top: 80px;">
@@ -114,7 +114,7 @@
     </div>
   </div>
 </div>
-Newsletter End--> 
-<!-- Inner Content Start --> 
+Newsletter End-->
+<!-- Inner Content Start -->
 
 @endsection

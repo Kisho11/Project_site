@@ -16,11 +16,11 @@
       border-bottom: 2px solid #eee;
     }
 </style>
- 
+
 <div class="header-wrap">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-5 col-md-12 navbar-light">
+      <div class="col-lg-4 col-md-12 navbar-light">
         <div class="logo"> <a href="{{ route('index') }}"><img style="height:72px;" alt="" class="logo-default" src="web/assets/images/main/kmv-logo-title.png"></a></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
       </div>
@@ -40,23 +40,33 @@
                     <li><a href="{{ route('principal') }}">Principal's message</a></li>
                   </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link  <?php echo ($title == "News") ? "active" : "" ?>"  href="{{ route('comingsoon') }}">News & Events</a> <i class="fas fa-caret-down"></i>
-                  
+                <li class="nav-item"><a class="nav-link  <?php echo ($title == "News") ? "active" : "" ?>"  href="{{ route('news-events') }}">News & Events</a> <i class="fas fa-caret-down"></i>
+
                 </li>
-                <li class="nav-item"><a class="nav-link <?php echo ($title == "Achievements") ? "active" : "" ?>"   href="{{ route('comingsoon') }}">Achievements</a>
-                 
+                <li class="nav-item"><a class="nav-link <?php echo ($title == "Achievements") ? "active" : "" ?>"   href="{{ route('achievements') }}">Achievements</a>
+
                 </li>
                 <li class="nav-item"><a class="nav-link <?php echo ($title == "Gallery") ? "active" : "" ?>"  href="{{ route('comingsoon') }}">Gallery</a> <i class="fas fa-caret-down"></i>
-                  
+
                 </li>
               </ul>
             </div>
           </nav>
         </div>
       </div>
-      <div class="col-lg-2">
-        <div class="header_info">
-          <div style="box-shadow: 0 11px 10px -8px #500d0ae3;" class="loginwrp"><a class="<?php echo ($title == "Contact Us") ? "active" : "" ?>" href="{{ route('contact') }}">Contact Us</a></div>
+      <div class="col-lg-3">
+        {{-- <div class="header_info ml-3">
+            <div style="box-shadow: 0 11px 10px -8px #500d0ae3;" class="loginwrp"><a class="<?php echo ($title == "Login") ? "active" : "" ?>" href="{{ route('contact') }}">Login</a></div>
+        </div> --}}
+        {{-- <div class="header_info mr-3">
+            <div style="box-shadow: 0 11px 10px -8px #500d0ae3;" class="loginwrp">
+                <a href="{{ route('login') }}">Login</a> | <a href="{{ route('register') }}">Register</a> | <a href="{{ route('contact') }}" class="<?php echo ($title == "Contact Us") ? "active" : "" ?>">Contact Us</a>
+            </div>
+        </div> --}}
+        <div class="header_info mr-3">
+            <div style="box-shadow: 0 11px 10px -8px #500d0ae3;" class="loginwrp">
+                <a href="{{ route('login') }}">Login</a> | <a href="{{ route('contact') }}" class="<?php echo ($title == "Contact Us") ? "active" : "" ?>">Contact Us</a>
+            </div>
         </div>
       </div>
     </div>
