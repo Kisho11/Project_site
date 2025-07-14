@@ -12,4 +12,10 @@ class NewsAndEventsController extends Controller
         $newsEvents = NewsEvent::orderBy('date', 'desc')->get(['id', 'title', 'description', 'image', 'date']);
         return view('page.web.news-events', compact('newsEvents'));
     }
+
+    public function show($id)
+    {
+        $newsEvent = NewsEvent::findOrFail($id);
+        return view('page.web.news-event-details', compact('newsEvent'));
+    }
 }

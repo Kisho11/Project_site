@@ -1,0 +1,15 @@
+[12-Jul-2025 15:05:54 UTC] PHP Warning:  require(/home/kmvlawdp/staging.kmv.lk/vendor/autoload.php): Failed to open stream: No such file or directory in /home/kmvlawdp/staging.kmv.lk/artisan on line 18
+[12-Jul-2025 15:05:54 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/kmvlawdp/staging.kmv.lk/vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/kmvlawdp/staging.kmv.lk/artisan:18
+Stack trace:
+#0 {main}
+  thrown in /home/kmvlawdp/staging.kmv.lk/artisan on line 18
+[12-Jul-2025 15:07:15 UTC] PHP Warning:  require(/home/kmvlawdp/staging.kmv.lk/vendor/autoload.php): Failed to open stream: No such file or directory in /home/kmvlawdp/staging.kmv.lk/artisan on line 18
+[12-Jul-2025 15:07:15 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/kmvlawdp/staging.kmv.lk/vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/kmvlawdp/staging.kmv.lk/artisan:18
+Stack trace:
+#0 {main}
+  thrown in /home/kmvlawdp/staging.kmv.lk/artisan on line 18
+[12-Jul-2025 15:08:52 UTC] PHP Warning:  require(/home/kmvlawdp/staging.kmv.lk/vendor/autoload.php): Failed to open stream: No such file or directory in /home/kmvlawdp/staging.kmv.lk/artisan on line 18
+[12-Jul-2025 15:08:52 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/kmvlawdp/staging.kmv.lk/vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/kmvlawdp/staging.kmv.lk/artisan:18
+Stack trace:
+#0 {main}
+  thrown in /home/kmvlawdp/staging.kmv.lk/artisan on line 18

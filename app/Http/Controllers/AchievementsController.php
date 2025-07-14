@@ -12,4 +12,10 @@ class AchievementsController extends Controller
         $achievements = Achievement::orderBy('date', 'desc')->get(['id', 'title', 'description', 'image', 'date']);
         return view('page.web.achievements', compact('achievements'));
     }
+
+    public function show($id)
+    {
+        $achievement = Achievement::findOrFail($id);
+        return view('page.web.achievement-details', compact('achievement'));
+    }
 }

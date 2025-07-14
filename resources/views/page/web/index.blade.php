@@ -103,19 +103,28 @@ $title = "Home";
 <!-- School Description End -->
 
 <!-- Achievements Start -->
-<div class="blog-wrap flight-wrap" style="margin-top: 40px; padding: 20px 0;">
+<div class="blog-wrap flight-wrap" style="margin-top: 40px; padding: 20px 0; background-color: #ffffff;">
   <div class="container">
     <div class="title">
-      <h1>Achievements</h1>
+      <h1 style="color: #500d0a;">Achievements</h1>
     </div>
     <ul class="row unorderList">
       @forelse ($achievements as $achievement)
-        <li class="col-lg-4">
+        <li class="col-lg-4" style="margin-bottom: 20px;">
           <div class="blog_box">
-            <div class="blogImg"><img src="{{ asset('storage/achievements/' . $achievement->image) }}" alt="{{ $achievement->title }}"></div>
-            <div class="path_box">
-              <h3><a href="#">{{ $achievement->title }}</a></h3>
-              <p>{{ $achievement->description }}</p>
+            <div class="blogImg">
+              <img src="{{ asset('storage/achievements/' . $achievement->image) }}" alt="{{ $achievement->title }}" style="width: 100%; height: 250px; object-fit: cover;">
+            </div>
+            <div class="path_box" style="padding: 15px; text-align: left;">
+              <div style="color: #500d0a; font-size: 14px; margin-bottom: 5px;">
+                {{ $achievement->date instanceof \DateTime ? $achievement->date->format('Y-m-d') : \Carbon\Carbon::parse($achievement->date)->format('Y-m-d') }}
+              </div>
+              <h3 style="margin: 0; font-size: 18px; line-height: 1.2; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; max-height: 4.4em;">
+                <a href="{{ route('achievements.show', $achievement->id) }}" style="color: #333; text-decoration: none;">{{ $achievement->title }}</a>
+              </h3>
+              <p style="margin: 10px 0; font-size: 14px; line-height: 1.4; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; max-height: 4.4em;">
+                {{ Str::limit($achievement->description, 150, '…') }}
+              </p>
             </div>
           </div>
         </li>
@@ -128,21 +137,28 @@ $title = "Home";
 <!-- Achievements End -->
 
 <!-- News & Events Start -->
-<div class="class-wrap" style="background: #fff6af; margin-top: 40px;">
+<div class="class-wrap" style="background: #ffffff; margin-top: 40px; padding: 20px 0;">
   <div class="container">
     <div class="title">
       <h1 style="color: #500d0a;">News & Events</h1>
     </div>
     <ul class="owl-carousel">
       @forelse ($newsEvents as $newsEvent)
-        <li class="item">
+        <li class="item" style="margin-bottom: 20px;">
           <div class="class_box">
-            <div class="class_Img"><img class="event-img" src="{{ asset('storage/news_events/' . $newsEvent->image) }}" alt="{{ $newsEvent->title }}">
-              <div class="time_box"><span>{{ $newsEvent->date->format('Y-m-d') }}</span></div>
+            <div class="class_Img">
+              <img class="event-img" src="{{ asset('storage/news_events/' . $newsEvent->image) }}" alt="{{ $newsEvent->title }}" style="width: 100%; height: 250px; object-fit: cover;">
+              <div class="time_box" style="color: #500d0a; font-size: 14px; margin-bottom: 5px;">
+                <span>{{ $newsEvent->date->format('Y-m-d') }}</span>
+              </div>
             </div>
-            <div class="path_box">
-              <h3><a href="#">{{ $newsEvent->title }}</a></h3>
-              <p>{{ $newsEvent->description }}</p>
+            <div class="path_box" style="padding: 15px; text-align: left;">
+              <h3 style="margin: 0; font-size: 18px; line-height: 1.2; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; max-height: 4.4em;">
+                <a href="{{ route('news-events.show', $newsEvent->id) }}" style="color: #333; text-decoration: none;">{{ $newsEvent->title }}</a>
+              </h3>
+              <p style="margin: 10px 0; font-size: 14px; line-height: 1.4; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; max-height: 4.4em;">
+                {{ Str::limit($newsEvent->description, 150, '…') }}
+              </p>
             </div>
           </div>
         </li>

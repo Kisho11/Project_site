@@ -33,7 +33,7 @@
         <div class="row align-items-center">
             <div class="col-md-2">
                 <div class="logo">
-                    <a href="https://staging.kmv.lk/" target="_blank">
+                    <a href="http://127.0.0.1:8000/" target="_blank">
                         {{-- https://kmv.lk --}}
                         <img style="height:40px;" alt="KMV Logo" class="logo-default"
                             src="{{ asset('web/assets/images/main/kmv-logo-title.png') }}">

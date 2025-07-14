@@ -23,4 +23,8 @@ class Achievement extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    protected $casts = [
+        'date' => 'datetime', // Casts the date field to a DateTime object
+    ];
 }

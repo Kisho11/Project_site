@@ -1,6 +1,6 @@
 <div class="loader-container" id="loader">
   <div class="loader"></div>
-  <img src="web/assets/images/main/kmv-logo-plain.png" alt="Logo" class="loader-logo" sizes="32x32">
+  <img src="{{ asset('web/assets/images/main/kmv-logo-plain.png') }}" alt="Logo" class="loader-logo" sizes="32x32">
 </div>
 <style>
     .header-wrap
@@ -21,7 +21,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-4 col-md-12 navbar-light">
-        <div class="logo"> <a href="{{ route('index') }}"><img style="height:62px;" alt="" class="logo-default" src="web/assets/images/main/kmv-logo-title.png"></a></div>
+        <div class="logo"> <a href="{{ route('index') }}"><img style="height:62px;" alt="" class="logo-default" src="{{ asset('web/assets/images/main/kmv-logo-title.png') }}"></a></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
       </div>
       <div class="col-lg-5 col-md-12">
@@ -40,14 +40,11 @@
                     <li><a href="{{ route('principal') }}">Principal's message</a></li>
                   </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link  <?php echo ($title == "News") ? "active" : "" ?>"  href="{{ route('news-events') }}">News & Events</a> <i class="fas fa-caret-down"></i>
-
+                <li class="nav-item"><a class="nav-link <?php echo ($title == "News & Events" || $title == "News & Event Details") ? "active" : "" ?>"  href="{{ route('news-events') }}">News & Events</a> <i class="fas fa-caret-down"></i>
                 </li>
-                <li class="nav-item"><a class="nav-link <?php echo ($title == "Achievements") ? "active" : "" ?>"   href="{{ route('achievements') }}">Achievements</a>
-
+                <li class="nav-item"><a class="nav-link <?php echo ($title == "Achievements" || $title == "Achievement Details") ? "active" : "" ?>"   href="{{ route('achievements') }}">Achievements</a>
                 </li>
                 <li class="nav-item"><a class="nav-link <?php echo ($title == "Gallery") ? "active" : "" ?>"  href="{{ route('gallery') }}">Gallery</a> <i class="fas fa-caret-down"></i>
-
                 </li>
               </ul>
             </div>
@@ -55,14 +52,6 @@
         </div>
       </div>
       <div class="col-lg-3">
-        {{-- <div class="header_info ml-3">
-            <div style="box-shadow: 0 11px 10px -8px #500d0ae3;" class="loginwrp"><a class="<?php echo ($title == "Login") ? "active" : "" ?>" href="{{ route('contact') }}">Login</a></div>
-        </div> --}}
-        {{-- <div class="header_info mr-3">
-            <div style="box-shadow: 0 11px 10px -8px #500d0ae3;" class="loginwrp">
-                <a href="{{ route('login') }}">Login</a> | <a href="{{ route('register') }}">Register</a> | <a href="{{ route('contact') }}" class="<?php echo ($title == "Contact Us") ? "active" : "" ?>">Contact Us</a>
-            </div>
-        </div> --}}
         <div class="header_info mr-3">
             <div style="box-shadow: 0 11px 10px -8px #500d0ae3;" class="loginwrp">
                 <a href="{{ route('login') }}">Login</a> | <a href="{{ route('contact') }}" class="<?php echo ($title == "Contact Us") ? "active" : "" ?>">Contact Us</a>
