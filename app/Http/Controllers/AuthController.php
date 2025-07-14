@@ -3,16 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Gallery;
-use App\Models\Achievement;
-use App\Models\NewsEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -171,22 +167,12 @@ class AuthController extends Controller
 
     public function dashboard()
     {
-        $newsEvents = NewsEvent::where('created_by', Auth::id())->with('user')->get();
-        $newsEventsCount = NewsEvent::where('created_by', Auth::id())->count();
-        $achievements = Achievement::where('created_by', Auth::id())->with('user')->get();
-        $achievementsCount = Achievement::where('created_by', Auth::id())->count();
-        $galleries = Gallery::where('created_by', Auth::id())->with('user')->get();
-        $galleriesCount = Gallery::where('created_by', Auth::id())->count();
-        $activeTab = session('activeTab', 'news'); // Default to 'news' tab
-
-        return view('layouts.admin.dashboard', compact('newsEvents', 'newsEventsCount', 'achievements', 'achievementsCount', 'galleries', 'galleriesCount', 'activeTab'));
+        return view('admin.dashboard');
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect()->route('login')->with('status', 'You have been logged out successfully.');
+        return redirect()->route('login');
     }
 }

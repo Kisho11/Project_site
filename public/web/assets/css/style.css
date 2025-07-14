@@ -9,32 +9,32 @@ Date        :  15 September 2020;
 2. Header Css
 3. Navigation Css
 4. Custom Slider Css
-5. Categories
-6. School Css
-7. About Css
+5. Categories 
+6. School Css 
+7. About Css 
 8. Class Css
 9. Choice Css
 10. Video Css
 11. Services Css
-12. Gallery Css
-13. Blog Css
-14. Testimonials Css
-15. Enrol Css
-16. Teachers Css
+12. Gallery Css 
+13. Blog Css 
+14. Testimonials Css  
+15. Enrol Css  
+16. Teachers Css 
 17. Blog Css
-18. Contact Css
-19. Newsletter Css
-20. Footer Css
-21. Copyright Css
+18. Contact Css 
+19. Newsletter Css 
+20. Footer Css 
+21. Copyright Css 
 22. Inner page title Css
 23. Class Details Css
 24. Teacher Deatils Css
-25. Pricing Css
-26. FAQs Css
+25. Pricing Css 
+26. FAQs Css 
 27. Inner Testimonials Css
 28. 404 page Css
-29. Login Css
-30. RegisterWrp Css
+29. Login Css 
+30. RegisterWrp Css 
 31. Inner Blog Css
 32. Categories Css
 33. Tags Css
@@ -133,7 +133,7 @@ ul.tick li {
   text-decoration: none;
   font-size: 15px;
   background: #481210;
-
+   
   border-radius: 36px;
   font-weight: bold;
   display: inline-block;
@@ -740,7 +740,7 @@ a.slidebtn i {
 
 
 /*---------------------------------------
-  Categories_wrap Css
+  Categories_wrap Css              
 -----------------------------------------*/
 .categories_wrap{z-index: 1000; margin-top: -70px; position: relative;}
 .categories-course{background: #3ab64c; padding:15px; text-align: center; border-radius: 12px;}
@@ -756,7 +756,7 @@ a.slidebtn i {
 
 
 /*---------------------------------------
-  School Css
+  School Css              
 -----------------------------------------*/
 .school-wrap {
   text-align: center;
@@ -799,7 +799,7 @@ a.slidebtn i {
   position: relative;
 }
 /*---------------------------------------
-  About Css
+  About Css              
 -----------------------------------------*/
 .about-wrap {position: relative;
   padding: 80px 0 60px 0;
@@ -1086,7 +1086,7 @@ a.slidebtn i {
 
 
 /*---------------------------------------
-   Services section
+   Services section              
 -----------------------------------------*/
 .service-wrap {
   padding: 60px 0 200px 0;
@@ -1131,7 +1131,7 @@ a.slidebtn i {
   padding: 0;
 }
 /*---------------------------------------
-   gallery section
+   gallery section              
 -----------------------------------------*/
 .gallery-wrap {position: relative;  background: url(../images/gallery-bg.jpg) no-repeat top; background-size: cover;
   padding:60px 0;
@@ -1245,7 +1245,7 @@ a.slidebtn i {
 
 
 /*---------------------------------------
-   Blog section
+   Blog section              
 -----------------------------------------*/
 .blog-section {
   position: relative;
@@ -1612,7 +1612,7 @@ a.slidebtn i {
 }
 
 /*---------------------------------------
-   Testimonials section
+   Testimonials section              
 -----------------------------------------*/
 .testimonials-wrap {
   padding: 60px 0;
@@ -2257,7 +2257,7 @@ button:focus {
 }
 
 
-.innerContent-wrap{padding: 1px 0;}
+.innerContent-wrap{padding: 80px 0;}
 .innerContent-wrap .class-wrap{padding: 0; background: none;}
 .innerContent-wrap .class-wrap .class_box{background: #f7f7f7; margin: 15px auto;}
 
@@ -2294,7 +2294,7 @@ blockquote::before {
     overflow: hidden;
     list-style: none;
     border-bottom: 1px solid #f0f0f0;
-    font-weight: bold;
+    font-weight: bold;  
     padding: 9px 15px;
     background: #f7f7f7;
 }
@@ -2542,7 +2542,7 @@ blockquote::before {
   color: #fff;
   font-size: 18px;
   position: relative;
-
+  
 }
 .panel-group h3{font-size:30px; margin-bottom:10px; margin-top:15px;}
 .panel-group .panel {
@@ -2598,7 +2598,7 @@ blockquote::before {
   -moz-transition: 0.3s ease-in;
   -webkit-transition: 0.3s ease-in;
   -ms-transition: 0.3s ease-in;
-  text-decoration: none;
+  text-decoration: none;  
 }
 .faqs h4 a.collapsed {
   background: #fff;
