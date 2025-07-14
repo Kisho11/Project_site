@@ -55,7 +55,7 @@
               <span class="input-group-text"><i class="fas fa-envelope"></i></span>
               <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
             </div>
-            <button type="submit" class="btn btn-signin w-100">Send Reset Link</button>
+            <button type="submit" class="btn btn-signin w-100 text-white">Send Reset Link</button>
           </form>
         </div>
       </div>

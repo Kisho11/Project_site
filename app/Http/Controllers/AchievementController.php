@@ -29,58 +29,6 @@ class AchievementController extends Controller
         return response()->json([]);
     }
 
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'title' => 'nullable|string|max:255',
-    //         'title_ta' => 'nullable|string|max:255',
-    //         'description' => 'nullable|string',
-    //         'description_ta' => 'nullable|string',
-    //         'image' => 'required|image|max:2048',
-    //         'date' => 'required|date',
-    //     ], [
-    //         'image.required' => 'Please upload an image.',
-    //         'image.image' => 'The file must be an image.',
-    //         'image.max' => 'The image must not exceed 2MB.',
-    //         'date.required' => 'Please select a date.',
-    //         'date.date' => 'The date must be a valid date.',
-    //     ]);
-
-    //     // Custom validation for title or title_ta
-    //     if (empty($request->title) && empty($request->title_ta)) {
-    //         return redirect()->back()->withInput()->withErrors(['title' => 'Either Title or Title (Tamil) is required.']);
-    //     }
-
-    //     // Custom validation for description or description_ta
-    //     if (empty($request->description) && empty($request->description_ta)) {
-    //         return redirect()->back()->withInput()->withErrors(['description' => 'Either Description or Description (Tamil) is required.']);
-    //     }
-
-    //     if ($request->hasFile('image')) {
-    //         $date = date('Ymd');
-    //         $serial = Achievement::where('image', 'like', $date . '%')->count() + 1;
-    //         $filename = $date . sprintf('%03d', $serial) . '.' . $request->file('image')->getClientOriginalExtension();
-    //         $path = $request->file('image')->storeAs('achievements', $filename, 'public');
-
-    //         Achievement::create([
-    //             'created_by' => Auth::id(),
-    //             'title' => $request->title,
-    //             'title_ta' => $request->title_ta,
-    //             'description' => $request->description,
-    //             'description_ta' => $request->description_ta,
-    //             'image' => $filename,
-    //             'date' => $request->date,
-    //             'created_at' => now(),
-    //             'updated_at' => now(),
-    //         ]);
-
-    //         Session::flash('success', 'Achievement added successfully!');
-    //     } else {
-    //         Session::flash('error', 'Image upload failed.');
-    //     }
-
-    //     return redirect()->route('admin.dashboard')->with('activeTab', 'achievements');
-    // }
     public function store(Request $request)
     {
         $request->validate([

@@ -3,7 +3,6 @@
     <div class="row">
       <div class="col-lg-3">
         <div class="footer_logo"><img alt="" class="footer-default" src="web/assets/images/main/kmv-logo-circled.png"></div>
-        
       </div>
       <div class="col-lg-3">
         <p>
@@ -14,13 +13,13 @@
         <h3>Quick links</h3>
         <ul class="footer-links">
           <li> <a href="{{ route('index') }}">Home</a></li>
-          <li> <a href="{{ route('comingsoon') }}">News & Events</a></li>
-          <li> <a href="{{ route('comingsoon') }}">Achievements</a></li>
-          <li> <a href="{{ route('comingsoon') }}">Gallery</a></li>
+          <li> <a href="{{ route('news-events') }}">News & Events</a></li>
+          <li> <a href="{{ route('achievements') }}">Achievements</a></li>
+          <li> <a href="{{ route('gallery') }}">Gallery</a></li>
           <li> <a href="{{ route('contact') }}">Contact Us</a></li>
         </ul>
       </div>
-      
+
       <div class="col-lg-4 col-md-3">
         <div class="footer_info">
           <h3>Get in Touch</h3>
@@ -32,11 +31,11 @@
           <div class="social-icons footer_icon">
             <ul>
               <li><a target="_blank" href="https://facebook.com/profile.php?id=100002452685996"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-              
+
               <li style="display:none;"><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
               <li style="display:none;"><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
               <li><a href="#"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
-              
+
             </ul>
           </div>
         </div>

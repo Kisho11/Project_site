@@ -12,16 +12,23 @@ use Illuminate\Support\Facades\Session;
 
 class GalleryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $galleries = Gallery::where('created_by', Auth::id())->with('user')->get();
-        $achievements = Achievement::where('created_by', Auth::id())->with('user')->get();
-        $newsEvents = NewsEvent::where('created_by', Auth::id())->with('user')->get();
-        $newsEventsCount = NewsEvent::where('created_by', Auth::id())->count();
-        $achievementsCount = Achievement::where('created_by', Auth::id())->count();
-        $galleriesCount = Gallery::where('created_by', Auth::id())->count();
-        $activeTab = session('activeTab', 'gallery');
-        return view('layouts.admin.dashboard', compact('galleries', 'achievements', 'newsEvents', 'newsEventsCount', 'achievementsCount', 'galleriesCount', 'activeTab'));
+        if (Auth::check()) {
+            // Admin dashboard view with user-specific data
+            $galleries = Gallery::where('created_by', Auth::id())->with('user')->get();
+            $achievements = Achievement::where('created_by', Auth::id())->with('user')->get();
+            $newsEvents = NewsEvent::where('created_by', Auth::id())->with('user')->get();
+            $newsEventsCount = NewsEvent::where('created_by', Auth::id())->count();
+            $achievementsCount = Achievement::where('created_by', Auth::id())->count();
+            $galleriesCount = Gallery::where('created_by', Auth::id())->count();
+            $activeTab = session('activeTab', 'gallery');
+            return view('layouts.admin.dashboard', compact('galleries', 'achievements', 'newsEvents', 'newsEventsCount', 'achievementsCount', 'galleriesCount', 'activeTab'));
+        } else {
+            // Public view with all gallery data
+            $galleries = Gallery::orderBy('created_at', 'desc')->get(['id', 'image']);
+            return view('page.web.gallery', compact('galleries'));
+        }
     }
 
     public function create()

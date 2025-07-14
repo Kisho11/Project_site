@@ -38,6 +38,14 @@
   color: #500d0a;
   text-decoration: none;
 }
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #500d0a;
+}
 </style>
 
 <!-- Inner Content Start -->
@@ -65,9 +73,10 @@
               <span class="input-group-text"><i class="fas fa-user"></i></span>
               <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
             </div>
-            <div class="input-group mb-3">
+            <div class="input-group mb-3 position-relative">
               <span class="input-group-text"><i class="fas fa-lock"></i></span>
               <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+              <span class="toggle-password" onclick="togglePassword('password')"><i class="fas fa-eye"></i></span>
             </div>
             <button type="submit" class="btn btn-signin w-100">
               <span style="color: rgb(255, 255, 255);">Sign In</span>
@@ -81,4 +90,18 @@
     </div>
   </div>
 </div>
+
+<script>
+function togglePassword(fieldId) {
+  var passwordField = document.getElementById(fieldId);
+  var toggleIcon = passwordField.nextElementSibling.querySelector('i');
+  if (passwordField.type === "password") {
+    passwordField.type = "text";
+    toggleIcon.className = "fas fa-eye-slash";
+  } else {
+    passwordField.type = "password";
+    toggleIcon.className = "fas fa-eye";
+  }
+}
+</script>
 @endsection

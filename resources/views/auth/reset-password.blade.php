@@ -34,6 +34,14 @@
   border: none;
   border-radius: 5px;
 }
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #500d0a;
+}
 </style>
 
 <!-- Inner Content Start -->
@@ -59,19 +67,35 @@
               <span class="input-group-text"><i class="fas fa-key"></i></span>
               <input type="text" class="form-control" id="otp" name="otp" placeholder="Enter OTP" required>
             </div>
-            <div class="input-group mb-3">
+            <div class="input-group mb-3 position-relative">
               <span class="input-group-text"><i class="fas fa-lock"></i></span>
               <input type="password" class="form-control" id="password" name="password" placeholder="New Password" required>
+              <span class="toggle-password" onclick="togglePassword('password')"><i class="fas fa-eye"></i></span>
             </div>
-            <div class="input-group mb-3">
+            <div class="input-group mb-3 position-relative">
               <span class="input-group-text"><i class="fas fa-lock"></i></span>
               <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password" required>
+              <span class="toggle-password" onclick="togglePassword('password_confirmation')"><i class="fas fa-eye"></i></span>
             </div>
-            <button type="submit" class="btn btn-signin w-100">Reset Password</button>
+            <button type="submit" class="btn btn-signin w-100 text-white">Reset Password</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+function togglePassword(fieldId) {
+  var passwordField = document.getElementById(fieldId);
+  var toggleIcon = passwordField.nextElementSibling.querySelector('i');
+  if (passwordField.type === "password") {
+    passwordField.type = "text";
+    toggleIcon.className = "fas fa-eye-slash";
+  } else {
+    passwordField.type = "password";
+    toggleIcon.className = "fas fa-eye";
+  }
+}
+</script>
 @endsection

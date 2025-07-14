@@ -52,7 +52,7 @@
               <span class="input-group-text"><i class="fas fa-key"></i></span>
               <input type="text" class="form-control" id="otp" name="otp" placeholder="Enter OTP" required>
             </div>
-            <button type="submit" class="btn btn-signin w-100">Verify</button>
+            <button type="submit" class="btn btn-signin w-100 text-white">Verify</button>
           </form>
         </div>
       </div>

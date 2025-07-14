@@ -16,18 +16,42 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
+    // Remove guest middleware from constructor to avoid conflicts
+    // public function __construct()
+    // {
+    //     $this->middleware('guest')->except(['logout', 'dashboard']);
+    // }
+
     public function showLoginForm()
     {
+        if (Auth::check()) {
+            return redirect()->route('admin.dashboard');
+        }
         return view('auth.login');
     }
 
     public function login(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => [
+                'required',
+                'string',
+                'min:11',
+                function ($attribute, $value, $fail) {
+                    if (!preg_match('/[a-z]/', $value) || !preg_match('/[A-Z]/', $value) || !preg_match('/[0-9]/', $value) || !preg_match('/[!@#$%^&*(),.?":{}|<>]/', $value)) {
+                        $fail('The ' . $attribute . ' must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1 symbol.');
+                    }
+                }
+            ],
+        ]);
+
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             if ($user->is_admin ?? false) {
-                return redirect()->route('admin.dashboard');
+                $request->session()->put('last_activity', now());
+                return redirect()->intended(route('admin.dashboard'));
             }
             Auth::logout();
             return back()->withErrors(['email' => 'You are not an admin.']);
@@ -37,6 +61,9 @@ class AuthController extends Controller
 
     public function showRegistrationForm()
     {
+        if (Auth::check()) {
+            return redirect()->route('admin.dashboard');
+        }
         return view('auth.register');
     }
 
@@ -45,7 +72,17 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => [
+                'required',
+                'string',
+                'min:11',
+                'confirmed',
+                function ($attribute, $value, $fail) {
+                    if (!preg_match('/[a-z]/', $value) || !preg_match('/[A-Z]/', $value) || !preg_match('/[0-9]/', $value) || !preg_match('/[!@#$%^&*(),.?":{}|<>]/', $value)) {
+                        $fail('The ' . $attribute . ' must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1 symbol.');
+                    }
+                }
+            ],
         ]);
 
         $otp = rand(100000, 999999);
@@ -72,6 +109,9 @@ class AuthController extends Controller
 
     public function showOtpForm()
     {
+        if (Auth::check()) {
+            return redirect()->route('admin.dashboard');
+        }
         return view('auth.verify-otp');
     }
 
@@ -84,6 +124,7 @@ class AuthController extends Controller
             $user->update(['otp' => null, 'otp_expires_at' => null]);
             Auth::login($user);
             session()->forget('email');
+            $request->session()->put('last_activity', now());
             return redirect()->route('admin.dashboard');
         }
         return back()->withErrors(['otp' => 'Invalid or expired OTP.']);
@@ -91,6 +132,9 @@ class AuthController extends Controller
 
     public function showForgotPasswordForm()
     {
+        if (Auth::check()) {
+            return redirect()->route('admin.dashboard');
+        }
         return view('auth.forgot-password');
     }
 
@@ -134,6 +178,9 @@ class AuthController extends Controller
 
     public function showResetForm($token)
     {
+        if (Auth::check()) {
+            return redirect()->route('admin.dashboard');
+        }
         $reset = DB::table('password_resets')->where('token', $token)->first();
         if (!$reset) {
             return redirect()->route('password.request')->withErrors(['email' => 'Invalid reset link.']);
@@ -147,7 +194,16 @@ class AuthController extends Controller
             'token' => 'required',
             'email' => 'required|email',
             'otp' => 'required|numeric',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => [
+                'required',
+                'string',
+                'min:11',
+                function ($attribute, $value, $fail) {
+                    if (!preg_match('/[a-z]/', $value) || !preg_match('/[A-Z]/', $value) || !preg_match('/[0-9]/', $value) || !preg_match('/[!@#$%^&*(),.?":{}|<>]/', $value)) {
+                        $fail('The ' . $attribute . ' must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1 symbol.');
+                    }
+                }
+            ],
         ]);
 
         $reset = DB::table('password_resets')->where('email', $request->email)->first();
@@ -171,22 +227,36 @@ class AuthController extends Controller
 
     public function dashboard()
     {
+        if (!Auth::check() || !(Auth::user()->is_admin ?? false)) {
+            return redirect()->route('login')->with('error', 'Unauthorized access.');
+        }
+        $lastActivity = session('last_activity');
+        if ($lastActivity && now()->diffInMinutes($lastActivity) > 30) {
+            Auth::logout();
+            session()->invalidate();
+            session()->regenerateToken();
+            session()->flush();
+            return redirect()->route('login')->with('status', 'Session timed out due to inactivity.');
+        }
+        session()->put('last_activity', now());
         $newsEvents = NewsEvent::where('created_by', Auth::id())->with('user')->get();
         $newsEventsCount = NewsEvent::where('created_by', Auth::id())->count();
         $achievements = Achievement::where('created_by', Auth::id())->with('user')->get();
         $achievementsCount = Achievement::where('created_by', Auth::id())->count();
         $galleries = Gallery::where('created_by', Auth::id())->with('user')->get();
         $galleriesCount = Gallery::where('created_by', Auth::id())->count();
-        $activeTab = session('activeTab', 'news'); // Default to 'news' tab
+        $activeTab = session('activeTab', 'news');
 
         return view('layouts.admin.dashboard', compact('newsEvents', 'newsEventsCount', 'achievements', 'achievementsCount', 'galleries', 'galleriesCount', 'activeTab'));
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('login')->with('status', 'You have been logged out successfully.');
+        $request->session()->flush();
+        $cookie = cookie()->forget(Auth::getRecallerName());
+        return redirect()->route('login')->with('status', 'You have been logged out successfully.')->withCookie($cookie);
     }
 }
